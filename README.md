@@ -15,3 +15,23 @@ by MiguelBi is licensed under the Creative Commons - Attribution license.
 
 
 https://www.thingiverse.com/thing:2633583
+
+
+🌐 3. Préparer la clé API YouTube
+Étapes Google Cloud :
+
+Google Cloud Console
+ → Créer un projet
+
+Activer YouTube Data API v3
+
+Créer une clé API → tu obtiens un code du type :
+
+AIzaSyBxxxxxxx
+
+
+Récupérer ton ID de chaîne YouTube :
+
+Dans YouTube Studio → Personnalisation → Informations générales → ID de la chaîne
+
+Format : UCxxxxxxx
