@@ -29,9 +29,11 @@ Créer une clé API → tu obtiens un code du type :
 
 AIzaSyBxxxxxxx
 
-
 Récupérer ton ID de chaîne YouTube :
 
 Dans YouTube Studio → Personnalisation → Informations générales → ID de la chaîne
 
 Format : UCxxxxxxx
+
+IDE arduino, fichier, préférence 
+http://arduino.esp8266.com/stable/package_esp8266com_index.json
