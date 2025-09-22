@@ -1,5 +1,8 @@
+
+
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
+#include <WiFiClientSecure.h>
 #include <ArduinoJson.h>
 #include <Wire.h>
 #include <Adafruit_GFX.h>
@@ -10,8 +13,8 @@ const char* ssid = "Ton_SSID";
 const char* password = "Ton_MDP";
 
 // === API YouTube ===
-const String apiKey = "TA_CLE_API";       // ta clé API Google
-const String channelId = "TON_ID_CHAINE"; // ton ID de chaîne YouTube
+const String apiKey = "TA_CLE_API";       // ⚠️ remplace par ta clé API Google
+const String channelId = "TON_ID_CHAINE"; // ⚠️ remplace par ton ID de chaîne YouTube
 
 // === Écran OLED 128x64 ===
 Adafruit_SSD1306 display(128, 64, &Wire);
@@ -44,13 +47,15 @@ void setup() {
 
 void loop() {
   if(WiFi.status() == WL_CONNECTED) {
-    WiFiClient client;
+    WiFiClientSecure client;
+    client.setInsecure();  // ✅ désactive la vérification SSL (évite erreur -5)
+
     HTTPClient http;
 
     String url = "https://www.googleapis.com/youtube/v3/channels?part=statistics&id=" 
                  + channelId + "&key=" + apiKey;
 
-    http.begin(client, url); // ✅ nouvelle syntaxe
+    http.begin(client, url);
 
     int httpCode = http.GET();
     if(httpCode == HTTP_CODE_OK) {
@@ -61,6 +66,7 @@ void loop() {
       if (!error) {
         long subscribers = doc["items"][0]["statistics"]["subscriberCount"];
 
+        // Affichage Serial
         Serial.print("Abonnés: ");
         Serial.println(subscribers);
 
